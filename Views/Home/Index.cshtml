@@ -1,0 +1,198 @@
+﻿@{
+    ViewData["Title"] = "Campus Connect";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h1 class="fw-bold display-5">Campus Connect 🎓</h1>
+        <p class="text-muted fs-5">Student event registration and campus communication system</p>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- ================= STUDENT REGISTER ================= -->
+        <div class="col-md-4">
+            <div class="card shadow-lg border-0 rounded-4 h-100" id="studentRegister">
+                <div class="card-body p-4">
+                    <h3 class="card-title text-center fw-bold mb-4">Student Register</h3>
+
+                    @if (ViewBag.RegisterMessage != null)
+                    {
+                        <div class="alert alert-danger">@ViewBag.RegisterMessage</div>
+                    }
+
+                    @if (ViewBag.Message != null)
+                    {
+                        <div class="alert alert-success">@ViewBag.Message</div>
+                    }
+
+                    <form method="post" action="/Home/Register">
+                        <input class="form-control mb-2" type="text" name="firstname" placeholder="First Name" required />
+                        <input class="form-control mb-2" type="text" name="lastname" placeholder="Last Name" required />
+                        <input class="form-control mb-2" type="email" name="email" placeholder="Email" required />
+                        <input class="form-control mb-2" type="password" name="password" placeholder="Password" required />
+                        <input class="form-control mb-2" type="password" name="confirmPassword" placeholder="Confirm Password" required />
+                        <input class="form-control mb-3" type="text" name="phone" placeholder="Phone" />
+                        <button class="btn btn-primary w-100">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= STUDENT LOGIN BUTTON ================= -->
+        <div class="col-md-4">
+            <div class="card shadow-lg border-0 rounded-4 h-100 text-center d-flex justify-content-center">
+                <div class="card-body">
+                    <h3 class="card-title fw-bold">Student Login</h3>
+
+                    @if (ViewBag.StudentMessage != null)
+                    {
+                        <div class="alert alert-danger">@ViewBag.StudentMessage</div>
+                    }
+
+                    <button class="btn btn-success btn-lg mt-4"
+                            data-bs-toggle="modal"
+                            data-bs-target="#studentLoginModal">
+                        Login
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= ADMIN LOGIN BUTTON ================= -->
+        <div class="col-md-4">
+            <div class="card shadow-lg border-0 rounded-4 h-100 text-center d-flex justify-content-center">
+                <div class="card-body">
+                    <h3 class="card-title fw-bold">Admin Login</h3>
+
+                    @if (ViewBag.AdminMessage != null)
+                    {
+                        <div class="alert alert-danger">@ViewBag.AdminMessage</div>
+                    }
+
+                    <button class="btn btn-dark btn-lg mt-4"
+                            data-bs-toggle="modal"
+                            data-bs-target="#adminLoginModal">
+                        Login as Admin
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ================= HOMEPAGE PREVIEW SECTION ================= -->
+    <div class="row g-4 mt-5">
+
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-4 h-100">
+                <div class="card-body p-4">
+                    <h4 class="fw-bold mb-3">Upcoming Events</h4>
+
+                    @if (ViewBag.Events == null || ViewBag.Events.Count == 0)
+                    {
+                        <p class="text-muted">No upcoming events yet.</p>
+                    }
+                    else
+                    {
+                        foreach (var e in ViewBag.Events)
+                        {
+                            <div class="border-bottom pb-2 mb-2">
+                                <strong>@e.Title</strong>
+                                <br />
+                                <small class="text-muted">@e.EventDate.ToString("dd MMM yyyy")</small>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-4 h-100">
+                <div class="card-body p-4">
+                    <h4 class="fw-bold mb-3">Announcements</h4>
+
+                    @if (ViewBag.Announcements == null || ViewBag.Announcements.Count == 0)
+                    {
+                        <p class="text-muted">No announcements yet.</p>
+                    }
+                    else
+                    {
+                        foreach (var a in ViewBag.Announcements)
+                        {
+                            <div class="border-bottom pb-2 mb-2">
+                                <strong>@a.Title</strong>
+                                <br />
+                                <small class="text-muted">@a.DatePosted.ToString("dd MMM yyyy HH:mm")</small>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ================= MODALS ================= -->
+
+<!-- Student Login Modal -->
+<div class="modal fade" id="studentLoginModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-4 rounded-4 shadow">
+
+            <h4 class="mb-3 text-center fw-bold">Student Login</h4>
+
+            <form method="post" action="/Home/Login">
+                <input type="email" name="email" class="form-control mb-3" placeholder="Email" required />
+                <input type="password" name="password" class="form-control mb-3" placeholder="Password" required />
+
+                <button class="btn btn-success w-100 mb-3">Login</button>
+            </form>
+
+            <div class="text-center">
+                <p class="mb-2">Don't have an account?</p>
+
+                <a href="#"
+                   class="btn btn-outline-primary"
+                   data-bs-dismiss="modal"
+                   onclick="setTimeout(function() {
+       const el = document.getElementById('studentRegister');
+
+       el.scrollIntoView({
+           behavior: 'smooth',
+           block: 'center'
+       });
+
+       el.classList.add('highlight');
+
+       setTimeout(() => el.classList.remove('highlight'), 1500);
+
+       document.querySelector('#studentRegister input[name=firstname]').focus();
+   }, 400);">
+                    Register
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Admin Login Modal -->
+<div class="modal fade" id="adminLoginModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-4 rounded-4 shadow">
+
+            <h4 class="mb-3 text-center fw-bold">Admin Login</h4>
+
+            <form method="post" action="/Home/AdminLogin">
+                <input type="email" name="email" class="form-control mb-3" placeholder="Admin Email" required />
+                <input type="password" name="password" class="form-control mb-3" placeholder="Password" required />
+
+                <button class="btn btn-dark w-100">Login as Admin</button>
+            </form>
+
+        </div>
+    </div>
+</div>

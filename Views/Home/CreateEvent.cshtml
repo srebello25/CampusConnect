@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Create Event";
+}
+
+<div class="container mt-5" style="max-width: 600px;">
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            <h3 class="text-center mb-4">Create Event 🎯</h3>
+
+            <form method="post" action="/Home/CreateEvent">
+
+                <div class="mb-3">
+                    <label class="form-label">Event Title</label>
+                    <input type="text" name="title" class="form-control" placeholder="Enter event title" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea name="description" class="form-control" rows="3" placeholder="Enter description" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Event Date</label>
+                    <input type="date" name="eventDate" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Venue</label>
+                    <select name="venueId" class="form-select" required>
+                        @foreach (var v in ViewBag.Venues)
+                        {
+                            <option value="@v.Id">@v.VenueName</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Create Event</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>

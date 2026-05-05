@@ -1,0 +1,56 @@
+﻿@model CampusConnect.Models.Event
+
+@{
+    ViewData["Title"] = "Edit Event";
+}
+
+<div class="container mt-4">
+    <h2>Edit Event</h2>
+
+    <form method="post" action="/Home/EditEvent">
+
+        <!-- Hidden ID -->
+        <input type="hidden" name="id" value="@Model.Id" />
+
+        <!-- Title -->
+        <div class="mb-3">
+            <label>Title</label>
+            <input class="form-control" type="text" name="title" value="@Model.Title" />
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3">
+            <label>Description</label>
+            <input class="form-control" type="text" name="description" value="@Model.Description" />
+        </div>
+
+        <!-- Date -->
+        <div class="mb-3">
+            <label>Date</label>
+            <input class="form-control" type="date" name="eventDate" value="@Model.EventDate.ToString("yyyy-MM-dd")" />
+        </div>
+
+        <!-- Venue (FIXED VERSION) -->
+        <div class="mb-3">
+            <label>Venue</label>
+            <select class="form-control" name="venueId">
+                @foreach (var v in ViewBag.Venues)
+                {
+                    if (v.Id == Model.VenueId)
+                    {
+                        <option value="@v.Id" selected>@v.VenueName</option>
+                    }
+                    else
+                    {
+                        <option value="@v.Id">@v.VenueName</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <!-- Buttons -->
+        <button class="btn btn-success" type="submit">Update Event</button>
+        <a href="/Home/AdminDashboard" class="btn btn-secondary">Cancel</a>
+
+    </form>
+</div>

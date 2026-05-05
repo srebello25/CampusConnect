@@ -1,0 +1,111 @@
+﻿@model List<CampusConnect.Models.Event>
+
+@{
+    ViewData["Title"] = "Student Dashboard";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold">Welcome to Student Dashboard, @ViewBag.StudentName 👋</h2>
+            <p class="text-muted">You are logged in successfully.</p>
+        </div>
+
+        <a href="/Home/Logout" class="btn btn-secondary">Logout</a>
+    </div>
+
+    <a href="/Home/SupportRequest" class="btn btn-outline-primary mb-4">
+        Submit Support Request
+    </a>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h3 class="card-title">Announcements 📢</h3>
+
+            @if (ViewBag.Announcements == null || ViewBag.Announcements.Count == 0)
+            {
+                <p class="text-muted">No announcements yet.</p>
+            }
+            else
+            {
+                foreach (var a in ViewBag.Announcements)
+                {
+                    <div class="border-bottom pb-3 mb-3">
+                        <h5>@a.Title</h5>
+                        <p>@a.Content</p>
+                        <small class="text-muted">@a.DatePosted.ToString("dd MMM yyyy HH:mm")</small>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h3 class="card-title">Available Events</h3>
+
+            @foreach (var e in Model)
+            {
+                <div class="border-bottom pb-3 mb-3">
+                    <h5>@e.Title</h5>
+                    <p>@e.Description</p>
+                    <p><strong>Date:</strong> @e.EventDate.ToString("dd MMM yyyy")</p>
+                    <p><strong>Venue:</strong> @e.Venue.VenueName</p>
+
+                    @if (ViewBag.RegisteredEvents != null && 
+                         ((IEnumerable<dynamic>)ViewBag.RegisteredEvents).Any(r => r.EventId == e.Id))
+                    {
+                        <button class="btn btn-secondary" disabled>
+                            Already Registered
+                        </button>
+                    }
+                    else
+                    {
+                        <form method="post" action="/Home/RegisterForEvent">
+                            <input type="hidden" name="eventId" value="@e.Id" />
+
+                            <button class="btn btn-success"
+                                    type="submit"
+                                    onclick="return confirm('Do you want to register for this event?')">
+                                Register for Event
+                            </button>
+                        </form>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h3 class="card-title">My Registered Events</h3>
+
+            @if (ViewBag.RegisteredEvents == null || ViewBag.RegisteredEvents.Count == 0)
+            {
+                <p class="text-muted">You have not registered for any events yet.</p>
+            }
+            else
+            {
+                foreach (var r in ViewBag.RegisteredEvents)
+                {
+                    <div class="border-bottom pb-3 mb-3">
+                        <h5>@r.Event.Title</h5>
+                        <p>@r.Event.Description</p>
+                        <p><strong>Date:</strong> @r.Event.EventDate.ToString("dd MMM yyyy")</p>
+                        <p><strong>Venue:</strong> @r.Event.Venue.VenueName</p>
+
+                        <form method="post" action="/Home/CancelRegistration">
+                            <input type="hidden" name="eventId" value="@r.Event.Id" />
+                            <button class="btn btn-danger btn-sm" type="submit"
+                                    onclick="return confirm('Are you sure you want to cancel this registration?')">
+                                Cancel Registration
+                            </button>
+                        </form>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+</div>
