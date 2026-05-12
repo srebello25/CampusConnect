@@ -16,15 +16,20 @@ public class HomeController : Controller
         _context = context;
     }
 
-    // Shows the homepage with events and announcements
-    public IActionResult Index()
+    // Loads homepage events and announcements
+    private void LoadHomePageData()
     {
         ViewBag.Events = _context.Events
             .Include(e => e.Venue)
             .ToList();
 
         ViewBag.Announcements = _context.Announcements.ToList();
+    }
 
+    // Shows the homepage with events and announcements
+    public IActionResult Index()
+    {
+        LoadHomePageData();
         return View();
     }
 
@@ -36,6 +41,7 @@ public class HomeController : Controller
         if (password != confirmPassword)
         {
             ViewBag.RegisterMessage = "Passwords do not match";
+            LoadHomePageData();
             return View("Index");
         }
 
@@ -45,6 +51,7 @@ public class HomeController : Controller
         if (existingUser != null)
         {
             ViewBag.RegisterMessage = "Email already exists";
+            LoadHomePageData();
             return View("Index");
         }
 
@@ -63,6 +70,7 @@ public class HomeController : Controller
         _context.SaveChanges();
 
         ViewBag.Message = "Registered Successfully";
+        LoadHomePageData();
         return View("Index");
     }
 
@@ -84,6 +92,7 @@ public class HomeController : Controller
         }
 
         ViewBag.StudentMessage = "Invalid email or password";
+        LoadHomePageData();
         return View("Index");
     }
 
@@ -101,6 +110,7 @@ public class HomeController : Controller
         }
 
         ViewBag.AdminMessage = "Invalid admin login";
+        LoadHomePageData();
         return View("Index");
     }
 
