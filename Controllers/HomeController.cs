@@ -266,6 +266,13 @@ public class HomeController : Controller
         var announcements = _context.Announcements.ToList();
         ViewBag.Announcements = announcements;
 
+        // Gets support requests for the admin dashboard
+        var supportRequests = _context.SupportRequests
+            .Include(s => s.Student)
+            .ToList();
+
+        ViewBag.SupportRequests = supportRequests;
+
         return View(events);
     }
 
