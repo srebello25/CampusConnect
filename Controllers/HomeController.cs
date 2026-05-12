@@ -304,6 +304,8 @@ public class HomeController : Controller
 
         _context.Announcements.Add(announcement);
         _context.SaveChanges();
+        
+        TempData["SuccessMessage"] = "Announcement created successfully";
 
         return RedirectToAction("AdminDashboard");
     }
