@@ -3,6 +3,12 @@
 }
 
 <div class="container mt-5" style="max-width: 600px;">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success text-center">
+            @TempData["SuccessMessage"]
+        </div>
+    }
 
     <!-- Support request form -->
     <div class="card shadow-sm">
@@ -15,7 +21,7 @@
                 <!-- Support subject -->
                 <div class="mb-3">
                     <label class="form-label">Subject</label>
-                    <input type="text" name="subject" class="form-control" placeholder="Enter subject" required />
+                    <input type="text" name="subject" class="form-control" placeholder="Enter subject" required/>
                 </div>
 
                 <!-- Support message -->

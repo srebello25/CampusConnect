@@ -189,8 +189,8 @@ public class HomeController : Controller
         _context.SupportRequests.Add(request);
         _context.SaveChanges();
 
-        ViewBag.Message = "Support request submitted successfully";
-        return View();
+        TempData["SuccessMessage"] = "Support request submitted successfully";
+        return RedirectToAction("SupportRequest");
     }
 
     // Registers the student for an event
@@ -360,6 +360,7 @@ public class HomeController : Controller
         {
             _context.SupportRequests.Remove(request);
             _context.SaveChanges();
+            TempData["SuccessMessage"] = "Support request deleted successfully";
         }
 
         return RedirectToAction("AdminDashboard");
