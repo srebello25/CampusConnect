@@ -1,5 +1,6 @@
 ﻿namespace CampusConnect.Models;
 
+// Stores Announcement
 public class Announcement
 {
     public int Id { get; set; }

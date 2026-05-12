@@ -1,5 +1,6 @@
 ﻿namespace CampusConnect.Models;
 
+// stores event details
 public class Event
 {
     public int Id { get; set; }

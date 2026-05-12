@@ -1,5 +1,6 @@
 ﻿namespace CampusConnect.Models;
 
+// Stores venue details
 public class Venue
 {
     public int Id { get; set; }

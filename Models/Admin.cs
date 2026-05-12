@@ -1,5 +1,6 @@
 ﻿namespace CampusConnect.Models;
 
+// Stores admin details
 public class Admin
 {
     public int Id { get; set; }

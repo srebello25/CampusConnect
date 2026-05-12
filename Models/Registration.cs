@@ -1,5 +1,6 @@
 ﻿namespace CampusConnect.Models;
 
+//Stores student event registrations
 public class Registration
 {
     public int Id { get; set; }

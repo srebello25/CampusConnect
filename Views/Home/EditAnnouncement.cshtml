@@ -6,6 +6,7 @@
 
 <div class="container mt-5" style="max-width: 600px;">
 
+    <!-- Edit announcement form -->
     <div class="card shadow-sm">
         <div class="card-body">
 
@@ -13,18 +14,22 @@
 
             <form method="post" action="/Home/EditAnnouncement">
 
+                <!-- Hidden announcement id -->
                 <input type="hidden" name="id" value="@Model.Id" />
 
+                <!-- Announcement title -->
                 <div class="mb-3">
                     <label class="form-label">Title</label>
                     <input type="text" name="title" class="form-control" value="@Model.Title" required />
                 </div>
 
+                <!-- Announcement content -->
                 <div class="mb-3">
                     <label class="form-label">Content</label>
                     <textarea name="content" class="form-control" rows="4" required>@Model.Content</textarea>
                 </div>
 
+                <!-- Update and cancel buttons -->
                 <div class="d-flex gap-2">
                     <button type="submit" class="btn btn-warning">Update Announcement</button>
                     <a href="/Home/AdminDashboard" class="btn btn-secondary">Cancel</a>

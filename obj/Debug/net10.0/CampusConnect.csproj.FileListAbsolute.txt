@@ -168,4 +168,5 @@ C:\Users\srebe\RiderProjects\CampusConnect\CampusConnect\obj\Debug\net10.0\Campu
 C:\Users\srebe\RiderProjects\CampusConnect\CampusConnect\obj\Debug\net10.0\ref\CampusConnect.dll
 C:\Users\srebe\RiderProjects\CampusConnect\CampusConnect\bin\Debug\net10.0\MySqlConnector.dll
 C:\Users\srebe\RiderProjects\CampusConnect\CampusConnect\bin\Debug\net10.0\Pomelo.EntityFrameworkCore.MySql.dll
-C:\Users\srebe\RiderProjects\CampusConnect\CampusConnect\obj\Debug\net10.0\compressed\8t760zxkhz-{0}-ws5tbqbylz-ws5tbqbylz.gz
+C:\Users\srebe\RiderProjects\CampusConnect\CampusConnect\obj\Debug\net10.0\CampusConnect.sourcelink.json
+C:\Users\srebe\RiderProjects\CampusConnect\CampusConnect\obj\Debug\net10.0\compressed\8t760zxkhz-{0}-3y8m7uxm6z-3y8m7uxm6z.gz

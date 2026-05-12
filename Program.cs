@@ -5,12 +5,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 // Add services to the container.
+//Adds database connection
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(
         builder.Configuration.GetConnectionString("DefaultConnection"),
         ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
     ));
+// Enables session storage
 builder.Services.AddSession();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -26,6 +29,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
+// Enables session usage
 app.UseSession();
 
 app.UseAuthorization();

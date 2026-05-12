@@ -1,5 +1,6 @@
 ﻿namespace CampusConnect.Models;
 
+// Stores student support requests
 public class SupportRequest
 {
     public int Id { get; set; }

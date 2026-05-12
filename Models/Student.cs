@@ -1,5 +1,6 @@
 ﻿namespace CampusConnect.Models;
 
+//Stores student details
 public class Student
 {
     public int Id { get; set; }

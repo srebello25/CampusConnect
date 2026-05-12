@@ -5,32 +5,34 @@
 }
 
 <div class="container mt-4">
+
+    <!-- Edit event heading -->
     <h2>Edit Event</h2>
 
     <form method="post" action="/Home/EditEvent">
 
-        <!-- Hidden ID -->
+        <!-- Hidden event id -->
         <input type="hidden" name="id" value="@Model.Id" />
 
-        <!-- Title -->
+        <!-- Event title -->
         <div class="mb-3">
             <label>Title</label>
             <input class="form-control" type="text" name="title" value="@Model.Title" />
         </div>
 
-        <!-- Description -->
+        <!-- Event description -->
         <div class="mb-3">
             <label>Description</label>
             <input class="form-control" type="text" name="description" value="@Model.Description" />
         </div>
 
-        <!-- Date -->
+        <!-- Event date -->
         <div class="mb-3">
             <label>Date</label>
             <input class="form-control" type="date" name="eventDate" value="@Model.EventDate.ToString("yyyy-MM-dd")" />
         </div>
 
-        <!-- Venue (FIXED VERSION) -->
+        <!-- Venue dropdown -->
         <div class="mb-3">
             <label>Venue</label>
             <select class="form-control" name="venueId">
@@ -48,7 +50,7 @@
             </select>
         </div>
 
-        <!-- Buttons -->
+        <!-- Update and cancel buttons -->
         <button class="btn btn-success" type="submit">Update Event</button>
         <a href="/Home/AdminDashboard" class="btn btn-secondary">Cancel</a>
 

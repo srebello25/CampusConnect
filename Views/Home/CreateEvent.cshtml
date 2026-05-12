@@ -4,6 +4,7 @@
 
 <div class="container mt-5" style="max-width: 600px;">
 
+    <!-- Create event form -->
     <div class="card shadow-sm">
         <div class="card-body">
 
@@ -11,21 +12,25 @@
 
             <form method="post" action="/Home/CreateEvent">
 
+                <!-- Event title -->
                 <div class="mb-3">
                     <label class="form-label">Event Title</label>
                     <input type="text" name="title" class="form-control" placeholder="Enter event title" required />
                 </div>
 
+                <!-- Event description -->
                 <div class="mb-3">
                     <label class="form-label">Description</label>
                     <textarea name="description" class="form-control" rows="3" placeholder="Enter description" required></textarea>
                 </div>
 
+                <!-- Event date -->
                 <div class="mb-3">
                     <label class="form-label">Event Date</label>
                     <input type="date" name="eventDate" class="form-control" required />
                 </div>
 
+                <!-- Venue dropdown -->
                 <div class="mb-3">
                     <label class="form-label">Venue</label>
                     <select name="venueId" class="form-select" required>
@@ -36,6 +41,7 @@
                     </select>
                 </div>
 
+                <!-- Submit button -->
                 <div class="d-grid">
                     <button type="submit" class="btn btn-primary">Create Event</button>
                 </div>
