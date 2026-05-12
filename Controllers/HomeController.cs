@@ -347,6 +347,21 @@ public class HomeController : Controller
 
         return RedirectToAction("AdminDashboard");
     }
+    
+    // Deletes a support request
+    [HttpPost]
+    public IActionResult DeleteSupportRequest(int supportRequestId)
+    {
+        var request = _context.SupportRequests.FirstOrDefault(s => s.Id == supportRequestId);
+
+        if (request != null)
+        {
+            _context.SupportRequests.Remove(request);
+            _context.SaveChanges();
+        }
+
+        return RedirectToAction("AdminDashboard");
+    }
 
     // Saves a new event
     [HttpPost]
