@@ -378,6 +378,8 @@ public class HomeController : Controller
 
         _context.Events.Add(newEvent);
         _context.SaveChanges();
+        
+        TempData["SuccessMessage"] = "Event created successfully";
 
         return RedirectToAction("AdminDashboard");
     }
