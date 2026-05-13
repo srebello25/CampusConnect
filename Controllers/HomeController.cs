@@ -272,6 +272,10 @@ public class HomeController : Controller
             .ToList();
 
         ViewBag.SupportRequests = supportRequests;
+        
+        ViewBag.TotalEvents = _context.Events.Count();
+        ViewBag.TotalAnnouncements = _context.Announcements.Count();
+        ViewBag.TotalSupportRequests = _context.SupportRequests.Count();
 
         return View(events);
     }

@@ -28,6 +28,38 @@
         <a href="/Home/CreateAnnouncement" class="btn btn-dark">Create Announcement</a>
     </div>
 
+    <!-- Dashboard statistics -->
+    <div class="row mb-4">
+
+        <div class="col-md-4">
+            <div class="card shadow-sm text-center">
+                <div class="card-body">
+                    <h5>Total Events</h5>
+                    <h2>@ViewBag.TotalEvents</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm text-center">
+                <div class="card-body">
+                    <h5>Total Announcements</h5>
+                    <h2>@ViewBag.TotalAnnouncements</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm text-center">
+                <div class="card-body">
+                    <h5>Total Support Requests</h5>
+                    <h2>@ViewBag.TotalSupportRequests</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     <!-- Announcements section -->
     <div class="card shadow-sm mb-4">
         <div class="card-body">
